@@ -1,0 +1,583 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Slidr\n"
+"POT-Creation-Date: 2015-04-10 15:28+0200\n"
+"PO-Revision-Date: 2015-04-10 15:29+0200\n"
+"Last-Translator: Giorgos Sarigiannidis <contact@gsarigiannidis.gr>\n"
+"Language-Team: Giorgos Sarigiannidis <contact@gsarigiannidis.gr>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: options.php:27
+msgid "Main Settings"
+msgstr ""
+
+#: options.php:28
+msgid "Defaults"
+msgstr ""
+
+#: options.php:29
+msgid "Documentation"
+msgstr ""
+
+#: options.php:45 options.php:98
+msgid "Slidr Options"
+msgstr ""
+
+#: options.php:45
+msgid "Slidr"
+msgstr ""
+
+#: options.php:101
+msgid "Options updated."
+msgstr ""
+
+#: options.php:116
+msgid "Save Changes"
+msgstr ""
+
+#: options.php:244
+msgid "Upload"
+msgstr ""
+
+#: options.php:308
+msgid "Appearance"
+msgstr ""
+
+#: options.php:310
+msgid ""
+"You can add a carousel on any page you like with the <code>[slidr]</code> "
+"shortcode. To add the shortcode directly in your php code, use <code>&lt;?"
+"php echo do_shortcode( '[slidr]' ); ?&gt;</code>. The shortcode has many "
+"parameters that you can adjust like so: <code>[slidr parameter=\"value\"]</"
+"code>. For a full list of the available options, please check the "
+"<strong>Documentation</strong> tab."
+msgstr ""
+
+#: options.php:315
+msgid "Carousel style"
+msgstr ""
+
+#: options.php:316
+msgid ""
+"Select the carousel style. If you want to style it yourself or have "
+"different style for each carousel you use, disable it."
+msgstr ""
+
+#: options.php:320
+msgid "Default"
+msgstr ""
+
+#: options.php:321
+msgid "Disabled (no style)"
+msgstr ""
+
+#: options.php:326
+msgid "Custom CSS"
+msgstr ""
+
+#: options.php:327
+msgid ""
+"Add your custom CSS here. If you want to use an external stylesheet file, "
+"just leave this blank."
+msgstr ""
+
+#: options.php:336
+msgid "Navigation buttons"
+msgstr ""
+
+#: options.php:341
+msgid "Previous"
+msgstr ""
+
+#: options.php:342
+msgid ""
+"Change the \"previous\" arrow. You can use text or custom fonts (e.g. Font "
+"Awesome)."
+msgstr ""
+
+#: options.php:349
+msgid "Next"
+msgstr ""
+
+#: options.php:350
+msgid ""
+"Change the \"next\" arrow. You can use text or custom fonts (e.g. Font "
+"Awesome)."
+msgstr ""
+
+#: options.php:358
+msgid "Performance"
+msgstr ""
+
+#: options.php:360
+msgid ""
+"You dont' need to load the plugins' styles and scripts when they are not in "
+"use. If you want to load them on specific pages, select them below. To keep "
+"them called everywhere, leave all options un-checked. To further customize "
+"conditional loading, use the <code>slidr_conditional()</code> function as "
+"described on the <strong>Documentation</strong> tab."
+msgstr ""
+
+#: options.php:364
+msgid "Condition"
+msgstr ""
+
+#: options.php:365
+msgid ""
+"Select whether the checked options below will get excluded (default) or "
+"included. In both cases, if none of the following checkboxes is checked, "
+"scripts will get called everywhere."
+msgstr ""
+
+#: options.php:369
+msgid "Include"
+msgstr ""
+
+#: options.php:370
+msgid "Exclude"
+msgstr ""
+
+#: options.php:375
+msgid "Front Page"
+msgstr ""
+
+#: options.php:376
+msgid "When on the Front Page (equals to <code>is_front_page()</code>)."
+msgstr ""
+
+#: options.php:382
+msgid "Main Page"
+msgstr ""
+
+#: options.php:383
+msgid "When on the Main Page (equals to <code>is_home()</code>)."
+msgstr ""
+
+#: options.php:389
+msgid "Single Posts"
+msgstr ""
+
+#: options.php:390
+msgid ""
+"When on single posts of any post type (except attachment and page post "
+"types).  (equals to <code>is_single()</code>)."
+msgstr ""
+
+#: options.php:396
+msgid "Pages"
+msgstr ""
+
+#: options.php:397
+msgid "When on pages.  (equals to <code>is_page()</code>)."
+msgstr ""
+
+#: options.php:403
+msgid "Archives"
+msgstr ""
+
+#: options.php:404
+msgid ""
+"When on any type of Archive page. Category, Tag, other Taxonomy Term, custom "
+"post type archive, Author and Date-based pages are all types of Archives.  "
+"(equals to <code>is_archive()</code>)."
+msgstr ""
+
+#: options.php:415
+msgid "Override defaults"
+msgstr ""
+
+#: options.php:417
+msgid ""
+"Perhaps you dont't intent to use many different types of carousel but "
+"instead you want to use it in a very specific way. For example, always get "
+"the same post type, or always use it as a simple image gallery etc. To avoid "
+"passing the same parameters everytime you use the shortcode, you can set the "
+"defaults below. That way, you can get the desired result with a simple "
+"<code>[slidr]</code>. Passing parameters for each shortcode is still valid "
+"and if you do so, it will override those defaults. The plugin takes "
+"advantage of the <code>WP_Query</code> class. If you are uncertain on which "
+"value you should put in each of the parameters below, you can check the "
+"respective documentation in the <a href=\"http://codex.wordpress.org/"
+"Class_Reference/WP_Query\" target=\"_blank\">Codex</a>."
+msgstr ""
+
+#: options.php:423
+msgid "Carousel container"
+msgstr ""
+
+#: options.php:428
+msgid "Carousel height"
+msgstr ""
+
+#: options.php:429
+msgid "Change the default (which is 150 pixels) height of the carousel."
+msgstr ""
+
+#: options.php:435
+msgid "Cycle items"
+msgstr ""
+
+#: options.php:436
+msgid ""
+"If enabled, when the carousel reaches it's first or last item, instead of "
+"stopping it loads the last or first item respectivelly, simulating a "
+"circular move."
+msgstr ""
+
+#: options.php:442
+msgid "Show navigation"
+msgstr ""
+
+#: options.php:443
+msgid "If you want to hide the navigation buttons, uncheck this."
+msgstr ""
+
+#: options.php:451 options.php:457
+msgid "Gallery mode"
+msgstr ""
+
+#: options.php:458
+msgid ""
+"Instead of posts, the Carousel can be used in \"Gallery mode\" displaying "
+"the images attached to the post in which you call it. By default it is "
+"disabled."
+msgstr ""
+
+#: options.php:462
+msgid "yes (Enable gallery mode)"
+msgstr ""
+
+#: options.php:463
+msgid "no (Disable gallery mode)"
+msgstr ""
+
+#: options.php:468
+msgid "Items link to:"
+msgstr ""
+
+#: options.php:469
+msgid ""
+"Whether the link should lead to the attachment page or the actual media file "
+"if gallery mode is enabled. Default is the Media file."
+msgstr ""
+
+#: options.php:473
+msgid "Media file"
+msgstr ""
+
+#: options.php:474
+msgid "Attachment page"
+msgstr ""
+
+#: options.php:481
+msgid "The Query"
+msgstr ""
+
+#: options.php:487
+msgid "Post type"
+msgstr ""
+
+#: options.php:488
+msgid "Default is <code>post</code>."
+msgstr ""
+
+#: options.php:494
+msgid "Items' number"
+msgstr ""
+
+#: options.php:495
+msgid "Default is <code>10</code>"
+msgstr ""
+
+#: options.php:501
+msgid "Category"
+msgstr ""
+
+#: options.php:502
+msgid ""
+"Default is disabled, to get all categories. To get items from a specific "
+"category, use the category ID. You can have multiple categories by adding "
+"IDs separated by comma, like so <code>1,2,3</code>."
+msgstr ""
+
+#: options.php:508
+msgid "Order By"
+msgstr ""
+
+#: options.php:509
+msgid "Default is <code>date</code>."
+msgstr ""
+
+#: options.php:515
+msgid "Order type"
+msgstr ""
+
+#: options.php:516
+msgid "Default is \"DESC\"."
+msgstr ""
+
+#: options.php:520
+msgid "DESC (Descending)"
+msgstr ""
+
+#: options.php:521
+msgid "ASC (Ascending)"
+msgstr ""
+
+#: options.php:526
+msgid "Thumbnail size"
+msgstr ""
+
+#: options.php:527
+msgid ""
+"Default is <code>thumbnail</code>. Other options usually include "
+"<code>medium</code>, <code>large</code> and <code>original</code>, but you "
+"can use your own registered sizes as well."
+msgstr ""
+
+#: options.php:535
+msgid "Item content"
+msgstr ""
+
+#: options.php:540
+msgid "Show thumbnails"
+msgstr ""
+
+#: options.php:541 options.php:552 options.php:563 options.php:574
+msgid "Default is \"yes\"."
+msgstr ""
+
+#: options.php:545
+msgid "yes (Show thumbnails)"
+msgstr ""
+
+#: options.php:546
+msgid "no (Do not show thumbnails)"
+msgstr ""
+
+#: options.php:551
+msgid "Show additional information (namely, title and excerpt) on mouseover."
+msgstr ""
+
+#: options.php:556
+msgid "yes (Show title and excerpt)"
+msgstr ""
+
+#: options.php:557
+msgid "no (Do not show title and excerpt)"
+msgstr ""
+
+#: options.php:562
+msgid "Show excerpt."
+msgstr ""
+
+#: options.php:567
+msgid "yes (Show the excerpt)"
+msgstr ""
+
+#: options.php:568
+msgid "no (Do not show the excerpt)"
+msgstr ""
+
+#: options.php:573
+msgid "Image link."
+msgstr ""
+
+#: options.php:578
+msgid "yes (Use image link)"
+msgstr ""
+
+#: options.php:579
+msgid "no (Remove image link)"
+msgstr ""
+
+#: options.php:589
+msgid "Available parameters"
+msgstr ""
+
+#: options.php:591
+msgid ""
+"The plugin takes advantage of the <code>WP_Query</code> class. If you are "
+"uncertain on which value you should put in each of the parameters below, you "
+"can check it's documentation in the <a href=\"http://codex.wordpress.org/"
+"Class_Reference/WP_Query\" target=\"_blank\">Codex</a>."
+msgstr ""
+
+#: options.php:591
+msgid ""
+"\n"
+"\t\t\t\t\t<li><code>[slidr height=\"some_number\"]</code> : Set the height "
+"for the specific carousel, overriding the defaults like so: <code>[slidr "
+"height=\"200\"]</code>. That way you can have carousels of different sizes "
+"in different pages of your website.</li>\n"
+"\t\t\t\t\t<li><code>[slidr cycle=\"yes\"]</code> : If enabled, when the "
+"carousel reaches it's first or last item, instead of stopping it loads the "
+"last or first item respectivelly, simulating a circular move.</li>\n"
+"\t\t\t\t\t<li><code>[slidr nav=\"hide\"]</code> : Completely hides the "
+"navigation buttons.</li>\n"
+"\t\t\t\t\t<li><code>[slidr gallery=\"yes\"]</code> : Instead of posts, the "
+"Carousel can be used in \"Gallery mode\" displaying the images attached to "
+"the post in which you call it. By default it is disabled. You can use "
+"gallery mode with specific images, by providing the IDs of those images like "
+"so: <code>[slidr gallery=\"1,2,3\"]</code>. If gallery mode is enabled, then "
+"other conflicting parameters such as post type or hide thumbnail will be "
+"ignored.</li>\n"
+"\t\t\t\t\t<li><code>[slidr gallery_link=\"attachment\"]</code> : Whether "
+"each item's link should lead to the attachment page or the actual media file "
+"if gallery mode is enabled. Default is the Media file. If gallery mode is "
+"set to \"no\" (disabled), then this setting is ignored.</li>\n"
+"\t\t\t\t\t<li><code>[slidr type=\"post_type\"]</code> : The post type whose "
+"items will be displayed in the carousel (e.g. <code>[slidr type=\"post\"]</"
+"code> for posts, <code>[slidr type=\"page\"]</code> for pages etc.). Default "
+"value is \"post\".</li>\n"
+"\t\t\t\t\t<li><code>[slidr number=some_number]</code> : The number of items "
+"to be displayed. Pay attention to the lack of quotation marks (e.g. "
+"<code>[slidr number=15]</code>). Default value is 10.</li>\n"
+"\t\t\t\t\t<li><code>[slidr category=\"category_id\"]</code> : The category "
+"from which you want to get your items. You should use the categorie's ID "
+"like <code>[slidr category=\"2\"]</code>. By default this option is "
+"disabled, to get all categories.</li>\n"
+"\t\t\t\t\t<li><code>[slidr parent=\"parent_page_id\"]</code> : Display the "
+"children of a page. You should use the page's ID like <code>[slidr parent="
+"\"2\"]</code>. By default this option is disabled.</li>\n"
+"\t\t\t\t\t<li><code>[slidr sticky=\"yes\"]</code> : By default the plugin "
+"doesn't care about whether a post is sticky. To only show sticky posts, "
+"though, use <code>[slidr sticky=\"yes\"]</code>).</li>\n"
+"\t\t\t\t\t<li><code>[slidr orderby=\"date\"]</code> : The items' order. "
+"Default order is by date.</li>\n"
+"\t\t\t\t\t<li><code>[slidr order=\"ASC\"]</code> : Whether the order will be "
+"ascending (ASC) or descentind (DESC). Default is \"DESC\" (descending). If "
+"the gallery mode is enabled and is set to get specific images, then this "
+"order option gets ignored and the images are ordered based on how the user "
+"added the image IDs in his/her shortcode.</li>\n"
+"\t\t\t\t\t<li><code>[slidr size=\"thumbnail\"]</code> : The thumbnail size, "
+"based on the registered sizes of your theme. Default value is \"thumbnail\". "
+"Other options usually include \"medium\", \"large\" and \"original\".</li>\n"
+"\t\t\t\t\t<li><code>[slidr thumb=\"no\"]</code> : If you need the carousel "
+"to display posts without thumbnails, you can completely disable images. "
+"Default value is enabled, of course.</li>\n"
+"\t\t\t\t\t<li><code>[slidr info_box=\"no\"]</code> : By default each item "
+"shows a box with the title and excerpt on mouseover or tap. With this option "
+"you can disable it.</li>\n"
+"\t\t\t\t\t<li><code>[slidr excerpt=\"no\"]</code> : Hide the excerpt from "
+"the info box.</li>\n"
+"\t\t\t\t\t<li><code>[slidr img_link=\"no\"]</code> : Remove the link from "
+"each image.</li>\n"
+"\t\t\t\t\t<li><code>[slidr class=\"yourclass\"]</code> : If you have "
+"carousels in many different pages, there is a chance that you want to style "
+"them separately. With this option you can add a custom class at the "
+"carousel's outer container and customize it using CSS.</li>\n"
+"\t\t\t\t"
+msgstr ""
+
+#: options.php:615
+msgid "Combinations and alternatives"
+msgstr ""
+
+#: options.php:617
+msgid ""
+"You can combine almost all of the above parameters to customize your query. "
+"For example, <code>[slidr type=\"portfolio\" size=\"200\" number=5 category="
+"\"5\" size=\"medium\" excerpt=\"no\" class=\"myworks\"]</code> should create "
+"a carousel of 200 pixels height which would display the five most recent "
+"items from your \"portfolio\" custom post type, AND under a specific "
+"category with the id of \"5\". Items' thumbnails should use the \"medium\" "
+"size and no excerpts should be displayed. Finally, this carousel should have "
+"a custom class \"myworks\".<br/><br/>If you want to add your carousel "
+"directly in your php code, you can use the <code>&lt;?php echo "
+"do_shortcode( '[slidr]' ); ?&gt;</code> function, setting parameters the "
+"same way as previously described."
+msgstr ""
+
+#: options.php:622
+msgid "Customizing infobox's data"
+msgstr ""
+
+#: options.php:624
+msgid ""
+"Perhaps you might want to alter the default display of the title and excerpt "
+"in the infobox. In that case, you can override the output by adding the "
+"following function in your theme's functions.php:<br/><br/><code>&lt;?php "
+"function slidr_custom_content( $link, $title, $excerpt, $a ) { <br/>echo "
+"'Your custom output here'; <br/> } ?&gt;</code><br/><br/>You can call each "
+"item's link, title and excerpt using the <code>$link</code>, <code>$title</"
+"code> and <code>$excerpt</code> variables respectively inside your function "
+"(in the above example you should use it inside your echo). If you have more "
+"than one slidr shortcodes with different attributes for each one, you can "
+"run tests using the <code>$a</code> variable. For example, to test if "
+"gallery mode is disabled: <br/><br/>\n"
+"\t\t\t\t<code>&lt;?php function slidr_custom_content( $link, $title, "
+"$excerpt, $a ) { <br/>\n"
+"\t\t\t\t\tif($a['gallery'] !== 'yes') { <br/>\n"
+"\t\t\t\t\t\t// Do something <br/>\n"
+"\t\t\t\t\t}<br/>\n"
+"\t\t\t\t} ?&gt;</code>"
+msgstr ""
+
+#: options.php:634
+msgid "Customizing conditional loading"
+msgstr ""
+
+#: options.php:636
+msgid ""
+"To further customize conditional loading of the plugin's resources, put <br/"
+"><br/><code>&lt;?php function slidr_conditional() { <br/"
+">if( YOUR_CONDITIONS ) { <br/>slidr_dequeue(); <br/>}<br/> } ?&gt;</code> "
+"<br/><br/>in your theme's <strong>functions.php</strong> file. For details "
+"on <strong>Conditional Tags</strong> check the <a href=\"http://codex."
+"wordpress.org/Conditional_Tags\" target=\"_blank\">Codex</a>."
+msgstr ""
+
+#: options.php:641
+msgid "Slidr in widgets"
+msgstr ""
+
+#: options.php:643
+msgid ""
+"If you want to add a carousel in your WordPress Sidebar Widgets, you need to "
+"enable shortcodes in your WordPress sidebar. To do so, paste "
+"<code>add_filter('widget_text', 'do_shortcode');</code> in your "
+"<strong>functions.php</strong> file. Then all you have to do is go to your "
+"<strong>Appearance » Widgets</strong> Screen and create a <strong>text "
+"widget</strong>. There you can paste <code>[slidr]</code> (or any shortcode "
+"that you have enabled on your site for that matter), and it will function "
+"properly."
+msgstr ""
+
+#: options.php:648
+msgid "Minimum requirements"
+msgstr ""
+
+#: options.php:650
+msgid ""
+"This plugin has been initially tested with Wordpress 4.1 and above. It might "
+"probably work with older versions too, but you should always use the latest "
+"version of Wordpress anyway."
+msgstr ""
+
+#: options.php:655
+msgid "I found a bug / I have a suggestion or a feature request."
+msgstr ""
+
+#: options.php:657
+msgid ""
+"You can post a message at the plugin's <a target=\"_blank\" href=\"http://"
+"wordpress.org/support/plugin/slidr\">support forum</a> and I will to my best "
+"to help you out."
+msgstr ""
+
+#: slidr.php:25
+msgid "Settings"
+msgstr ""
