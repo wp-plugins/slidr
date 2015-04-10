@@ -45,7 +45,7 @@ Yes.
 
 = Can I add a carousel directly in my PHP code? =
 
-Yes. You can use "do_shortcode" like so: &lt;?php echo do_shortcode( '[slidr]' ); ?&gt;.  
+Yes. You can use "do_shortcode" like so: <code>&lt;?php echo do_shortcode( '[slidr]' ); ?&gt;</code>.  
 
 = Instead of the title and excerpt I want to display my own content / metadata. Can I customize that output myself? =
 
