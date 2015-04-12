@@ -1,10 +1,10 @@
 === Slidr ===
 Contributors: gsarig
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTB3APJDMT9UN
-Tags: carousel
+Tags: carousel, image carousel, thumbnail slider, slideshow, gallery, image gallery
 Requires at least: 4.0
 Tested up to: 4.1.1
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 
 A clean, simple, responsive and touch-friendly Carousel with no bells and whistles but plenty of flexibility. 
@@ -45,7 +45,7 @@ Yes.
 
 = Can I add a carousel directly in my PHP code? =
 
-Yes. You can use "do_shortcode" like so: <?php echo do_shortcode( '[slidr]' ); ?>.  
+Yes. You can use "do_shortcode" like so: <code>&lt;?php echo do_shortcode( '[slidr]' ); ?&gt;</code>.  
 
 = Instead of the title and excerpt I want to display my own content / metadata. Can I customize that output myself? =
 
@@ -71,10 +71,16 @@ Slidr's main goal is to be lightweight and flexible, with the minimum possible r
 
 == Changelog ==
 
+= 1.0.1 =
+* Use un-minified scripts, for better performance with 3rd-party minifiers.
+
 = 1.0 =
 * First release.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+* Minor fix: Use un-minified scripts, for better performance with 3rd-party minifiers.
 
 = 1.0 =
 * Initial submittion to the WordPress.org repository
