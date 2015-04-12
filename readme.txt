@@ -16,6 +16,7 @@ Slidr is a clean, simple, responsive and touch-friendly multi-purpose Carousel. 
 = Features =
 * Responsive.
 * Touch friendly.
+* Can accept variable width - fixed height images.
 * You can call it via a shortcode on posts, pages and widgets.
 * Customizable queries with more than a dozen of parameters. You can adjust the post type, number of entries, thumbnail size, order and many more.
 * You can have different carousels with different queries and different parameters on a single page.
