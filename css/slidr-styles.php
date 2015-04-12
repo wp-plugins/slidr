@@ -2,7 +2,7 @@
 
   function slidr_templates() {
     if( slidr('style') === 'default' ) {
-      wp_enqueue_style( 'slidr-default-styles', plugins_url( '/default.min.css' , __FILE__ ) ); 
+      wp_enqueue_style( 'slidr-default-styles', plugins_url( '/default.css' , __FILE__ ) ); 
     }
   }
   add_action( 'wp_enqueue_scripts', 'slidr_templates' );
