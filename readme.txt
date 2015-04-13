@@ -13,6 +13,8 @@ A clean, simple, responsive and touch-friendly Carousel with no bells and whistl
 
 Slidr is a clean, simple, responsive and touch-friendly multi-purpose Carousel. It takes a different approach than most other carousel plugins on that it displays posts or custom posts instead of just gallery photos (but it can show gallery photos as well if you like). Its goal is to be as flexible as possible, allowing you to fully customize its appearance via CSS and even overriding the default HTML output.
 
+[View the demo](http://demos.gsarigiannidis.gr/slidr/ "Slidr Demo")
+
 = Features =
 * Responsive.
 * Touch friendly.
