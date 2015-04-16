@@ -420,7 +420,7 @@ class SLidr_Options {
 		$this->settings['container_def'] = array( // Carousel container.
 			'section' => 'defaults',
 			'title'   => '',
-			'desc'    => __( 'Carousel container' , 'slidr' ),
+			'desc'    => __( 'Basic options' , 'slidr' ),
 			'type'    => 'heading'
 		);
 			$this->settings['height'] = array(
@@ -430,12 +430,32 @@ class SLidr_Options {
 				'type'    => 'text',
 				'std'     => '150'
 			);
+			$this->settings['loader'] = array(
+				'section' => 'defaults',
+				'title'   => __( 'Show loader' , 'slidr' ),
+				'desc'    => __( 'Show a "loading" animation untill all items are loaded. Uncheck to disable.' , 'slidr' ),
+				'type'    => 'checkbox',
+				'std'     => 1
+			);
 			$this->settings['nav_cycle'] = array(
 				'section' => 'defaults',
 				'title'   => __( 'Cycle items' , 'slidr' ),
-				'desc'    => __( 'If enabled, when the carousel reaches it\'s first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move.' , 'slidr' ),
-				'type'    => 'checkbox',
-				'std'     => 0
+				'desc'    => __( 'If enabled, when the carousel reaches it\'s first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move. Auto scroll enables the cycling and scrolls it automatically.' , 'slidr' ),
+				'type'    => 'select',
+				'std'     => 'no',
+				'choices' => array(
+					'no' 	=> __( 'Disabled' , 'slidr' ),
+					'yes' 	=> __( 'Enabled' , 'slidr' ),
+					'auto' 	=> __( 'Auto scroll' , 'slidr' )
+
+				)
+			);
+			$this->settings['scroll_speed'] = array(
+				'section' => 'defaults',
+				'title'   => __( 'Autoscroll speed' , 'slidr' ),
+				'desc'    => __( 'Autoscroll speed in miliseconds (1000ms = 1 second). Default is 4000 (4 seconds).' , 'slidr' ),
+				'type'    => 'text',
+				'std'     => '4000'
 			);
 			$this->settings['nav_buttons'] = array(
 				'section' => 'defaults',
@@ -588,9 +608,11 @@ class SLidr_Options {
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Available parameters' , 'slidr' ),
 			'type'    => 'heading',
-			'para'	  => __('The plugin takes advantage of the <code>WP_Query</code> class. If you are uncertain on which value you should put in each of the parameters below, you can check it\'s documentation in the <a href="http://codex.wordpress.org/Class_Reference/WP_Query" target="_blank">Codex</a>.', 'slidr' ) . '<ol class="doc_list">' . __( '
+			'para'	  => __('The plugin takes advantage of the <code>WP_Query</code> class. If you are uncertain on which value you should put in each of the parameters below, you can check its documentation in the <a href="http://codex.wordpress.org/Class_Reference/WP_Query" target="_blank">Codex</a>.', 'slidr' ) . '<ol class="doc_list">' . __( '
 					<li><code>[slidr height="some_number"]</code> : Set the height for the specific carousel, overriding the defaults like so: <code>[slidr height="200"]</code>. That way you can have carousels of different sizes in different pages of your website.</li>
-					<li><code>[slidr cycle="yes"]</code> : If enabled, when the carousel reaches it\'s first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move.</li>
+					<li><code>[slidr loader="no"]</code> : Shows a "loading" animation until all items are loaded. By default it is enabled.</li>
+					<li><code>[slidr cycle="yes"]</code> : If enabled, when the carousel reaches its first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move. With <code>[slidr cycle="auto"]</code> you can enable autoscoll, which animates the carousel automatically every 4 seconds.</li>
+					<li><code>[slidr speed="4000"]</code> : Set the autoscroll speed in miliseconds. Default value is 4000ms (4 seconds). This option works only if "cycle" parameter, mentioned above, is set to "auto".</li>
 					<li><code>[slidr nav="hide"]</code> : Completely hides the navigation buttons.</li>
 					<li><code>[slidr gallery="yes"]</code> : Instead of posts, the Carousel can be used in "Gallery mode" displaying the images attached to the post in which you call it. By default it is disabled. You can use gallery mode with specific images, by providing the IDs of those images like so: <code>[slidr gallery="1,2,3"]</code>. If gallery mode is enabled, then other conflicting parameters such as post type or hide thumbnail will be ignored.</li>
 					<li><code>[slidr gallery_link="attachment"]</code> : Whether each item\'s link should lead to the attachment page or the actual media file if gallery mode is enabled. Default is the Media file. If gallery mode is set to "no" (disabled), then this setting is ignored.</li>
@@ -614,7 +636,7 @@ class SLidr_Options {
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Combinations and alternatives' , 'slidr' ),
 			'type'    => 'heading',
-			'para'	  => __( 'You can combine almost all of the above parameters to customize your query. For example, <code>[slidr type="portfolio" height="200" number=5 category="5" size="medium" excerpt="no" class="myworks"]</code> should create a carousel of 200 pixels height which would display the five most recent items from your "portfolio" custom post type, AND under a specific category with the id of "5". Items\' thumbnails should use the "medium" size and no excerpts should be displayed. Finally, this carousel should have a custom class "myworks".<br/><br/>If you want to add your carousel directly in your php code, you can use the <code>&lt;?php echo do_shortcode( \'[slidr]\' ); ?&gt;</code> function, setting parameters the same way as previously described.' , 'slidr' )
+			'para'	  => __( 'You can combine almost all of the above parameters to customize your query. For example, <code>[slidr type="portfolio" height="200" number=5 category="5" size="medium" excerpt="no" class="myworks" cycle="auto" speed="2000"]</code> should create a carousel of 200 pixels height which would display the five most recent items from your "portfolio" custom post type, AND under a specific category with the id of "5". Items\' thumbnails should use the "medium" size and no excerpts should be displayed. Finally, this carousel should autoscroll its items every 2000ms (2 seconds) and it should have a custom class "myworks".<br/><br/>If you want to add your carousel directly in your php code, you can use the <code>&lt;?php echo do_shortcode( \'[slidr]\' ); ?&gt;</code> function, setting parameters the same way as previously described.' , 'slidr' )
 		);
 		$this->settings['doc_infobox'] = array(
 			'section' => 'about',

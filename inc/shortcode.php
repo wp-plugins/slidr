@@ -12,7 +12,7 @@
 			$gallery = $a['gallery'] !== 'yes' ? explode( ',', $a['gallery'] ) : 'inherit';
 			$args = array(
 				'post_type' 		=> 'attachment',
-				'posts_per_page' 	=> $a['number'],
+				'posts_per_page' 	=> filter_var($a['number'], FILTER_SANITIZE_NUMBER_INT),
 				'post_parent' 		=> $gallery == 'inherit' ? get_the_ID() : false,
 				'post__in' 			=> is_array( $gallery ) ? $gallery : false,
 				'orderby' 			=> $gallery == 'inherit' ? 'date' : 'post__in',
@@ -41,7 +41,7 @@
 			$sticky = ($a['sticky'] === 'yes') ? get_option( 'sticky_posts' ) : '';
 			$args	= array(
 				'post_type' 		=> $a['type'],
-				'posts_per_page' 	=> $a['number'],
+				'posts_per_page' 	=> filter_var($a['number'], FILTER_SANITIZE_NUMBER_INT),
 				'post_parent' 		=> $a['parent'],
 				'post__in'          => $sticky,
 				'category__in' 		=> $a['category'],

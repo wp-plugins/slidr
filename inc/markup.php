@@ -5,12 +5,26 @@
 	*/
 	$size 			= $a['size'];
 	$default_style 	= slidr('style') 		=== 'default' 	? ' default' : ''; 
-	$cycle		 	= $a['cycle']		 	=== 'yes' 		? ' slidr-cycle' : ''; 
+	$loader			= $a['loader']			=== 'yes' 		? '<div class="slidr-loader"><div>'. __("Loading...", "slidr" ) . '</div></div>' : ''; 
 	$nav_prev 		= slidr('nav_prev') 	!== '&#8249;' 	? slidr('nav_prev') : '&#8249;'; 
 	$nav_next 		= slidr('nav_next') 	!== '&#8250;'	? slidr('nav_next') : '&#8250;'; 
 	$ie_fix 		= $a['info_box'] 		=== 'yes'		? '" aria-haspopup="true' : ''; 
 	$thumb 			= $a['thumb'] 			=== 'yes' 		? $ie_fix : ' no-thumb';
 	$nav_hidden 	= $a['nav'] 			=== 'hide'		? ' slidr-nav-hidden' : '';
+
+	$speed 			= filter_var($a['speed'], FILTER_SANITIZE_NUMBER_INT);
+	if( $a['cycle'] !== 'no' && $a['cycle'] !== false ) {
+		if( $a['cycle'] === 'auto' ) {
+			$cycle 			= ' slidr-cycle slidr-autoscroll';
+			$scroll_speed 	= ( $speed !== '4000' && $speed !== '' ) ? ' data-speed="' . $speed . '" ' : ''; 
+		} else {
+			$cycle 			= ' slidr-cycle';
+			$scroll_speed 	= '';
+		}	
+	} else {
+		$cycle 			= '';
+		$scroll_speed 	= '';
+	}
 
 	/*
 		Custom size per Carousel.
@@ -47,8 +61,9 @@
 	$itemtag 	= $html5 && $a['thumb'] === 'yes' ? 'figure' 	: 'dl';
 	$icontag 	= $html5 && $a['thumb'] === 'yes' ? 'div' 		: 'dt';
 
-	$open_slidr 	= '<div class="slidr-container ' . $a['class'] . $default_style . $cycle . '"' . $car_style . '>
-						<span class="slidr-nav-prev slidr-nav' . $nav_hidden . '"' . $nav_style . '>
+	$open_slidr 	= '<div class="slidr-container ' . $a['class'] . $default_style . $cycle . '"' . $scroll_speed . $car_style . '>'
+						. $loader .
+						'<span class="slidr-nav-prev slidr-nav' . $nav_hidden . '"' . $nav_style . '>
 							' . $nav_prev . '
 						</span>
 						<div class="slidr-items-container"' . $con_style . '>
