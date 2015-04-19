@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: carousel, image carousel, thumbnail slider, slideshow, gallery, image gallery
 Requires at least: 4.0
 Tested up to: 4.1.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 
 A clean, simple, responsive and touch-friendly Carousel with no bells and whistles but plenty of flexibility. 
@@ -121,6 +121,9 @@ Slidr's main goal is to be lightweight and flexible, with the minimum possible r
 4. The documentation tab
 
 == Changelog ==
+
+= 1.1.1 =
+* FIX: On some occassions the carousel's width is one pixel short. When that happens, add the missing pixel.
 
 = 1.1 =
 * NEW: Added autoscroll support

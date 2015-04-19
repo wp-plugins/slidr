@@ -21,6 +21,10 @@ jQuery(document).ready(function($) {
         });
         $container.width(totalWidth);
 
+        if( $container.height() > $carousel.height() ) { // On some occassions the carousel's width is one pixel short.
+          $container.width(totalWidth + 1); // When that happens, add the missing pixel.
+        }
+
         if( $slidr.find('div').first().hasClass('slidr-loader') ) { // If loader is enabled,
           $('.slidr-loader').delay(500).fadeOut(); // hide it when all images are loaded.
         }
