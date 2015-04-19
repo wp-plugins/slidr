@@ -10,6 +10,7 @@
 }
 .slidr-items {
   overflow: hidden;
+  width: 9999px;
 }
 .slidr-item {
   display: inline-block;
