@@ -29,6 +29,10 @@ jQuery(document).ready(function($) {
           $('.slidr-loader').delay(500).fadeOut(); // hide it when all images are loaded.
         }
 
+        if( $slidr.width() >= $container.outerWidth() ) { // If the items width is shorter that the carousel width, hide the next button
+          $navNext.hide();
+        }
+        
       }); // $(window).load();
     }
 

@@ -10,12 +10,14 @@
 
 		if( $a['gallery'] !== false ) { // If we want to display specific images
 			$gallery = $a['gallery'] !== 'yes' ? explode( ',', $a['gallery'] ) : 'inherit';
+			$thumb_ID = ( is_singular() && $a['gallery'] === 'yes' ) ? get_post_thumbnail_id() : false; // Featured image
 			$args = array(
 				'post_type' 		=> 'attachment',
 				'posts_per_page' 	=> filter_var($a['number'], FILTER_SANITIZE_NUMBER_INT),
 				'post_parent' 		=> $gallery == 'inherit' ? get_the_ID() : false,
 				'post__in' 			=> is_array( $gallery ) ? $gallery : false,
 				'orderby' 			=> $gallery == 'inherit' ? 'date' : 'post__in',
+				'exclude'			=> $thumb_ID,
 			); 
 			$attachments = get_posts($args);
 			if ( $attachments ) :

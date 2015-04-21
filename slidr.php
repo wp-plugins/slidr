@@ -3,7 +3,7 @@
 	Plugin Name: Slidr
 	Plugin URI: http://wordpress.org/plugins/slidr/
 	Description: A clean, simple, responsive and touch-friendly Carousel with no bells and whistles but plenty of flexibility. 
-	Version: 1.1.1
+	Version: 1.1.2
 	Author: Giorgos Sarigiannidis
 	Author URI: http://www.gsarigiannidis.gr
 	*/
