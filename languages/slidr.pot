@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Slidr\n"
-"POT-Creation-Date: 2015-04-10 15:28+0200\n"
-"PO-Revision-Date: 2015-04-10 15:29+0200\n"
+"POT-Creation-Date: 2015-04-17 00:18+0200\n"
+"PO-Revision-Date: 2015-04-17 00:18+0200\n"
 "Last-Translator: Giorgos Sarigiannidis <contact@gsarigiannidis.gr>\n"
 "Language-Team: Giorgos Sarigiannidis <contact@gsarigiannidis.gr>\n"
 "Language: en\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: inc/markup.php:8
+msgid "Loading..."
+msgstr ""
 
 #: options.php:27
 msgid "Main Settings"
@@ -214,7 +218,7 @@ msgid ""
 msgstr ""
 
 #: options.php:423
-msgid "Carousel container"
+msgid "Basic options"
 msgstr ""
 
 #: options.php:428
@@ -226,205 +230,243 @@ msgid "Change the default (which is 150 pixels) height of the carousel."
 msgstr ""
 
 #: options.php:435
-msgid "Cycle items"
+msgid "Show loader"
 msgstr ""
 
 #: options.php:436
 msgid ""
-"If enabled, when the carousel reaches it's first or last item, instead of "
-"stopping it loads the last or first item respectivelly, simulating a "
-"circular move."
+"Show a \"loading\" animation untill all items are loaded. Uncheck to disable."
 msgstr ""
 
 #: options.php:442
-msgid "Show navigation"
+msgid "Cycle items"
 msgstr ""
 
 #: options.php:443
+msgid ""
+"If enabled, when the carousel reaches it's first or last item, instead of "
+"stopping it loads the last or first item respectivelly, simulating a "
+"circular move. Auto scroll enables the cycling and scrolls it automatically."
+msgstr ""
+
+#: options.php:447
+msgid "Disabled"
+msgstr ""
+
+#: options.php:448
+msgid "Enabled"
+msgstr ""
+
+#: options.php:449
+msgid "Auto scroll"
+msgstr ""
+
+#: options.php:455
+msgid "Autoscroll speed"
+msgstr ""
+
+#: options.php:456
+msgid ""
+"Autoscroll speed in miliseconds (1000ms = 1 second). Default is 4000 (4 "
+"seconds)."
+msgstr ""
+
+#: options.php:462
+msgid "Show navigation"
+msgstr ""
+
+#: options.php:463
 msgid "If you want to hide the navigation buttons, uncheck this."
 msgstr ""
 
-#: options.php:451 options.php:457
+#: options.php:471 options.php:477
 msgid "Gallery mode"
 msgstr ""
 
-#: options.php:458
+#: options.php:478
 msgid ""
 "Instead of posts, the Carousel can be used in \"Gallery mode\" displaying "
 "the images attached to the post in which you call it. By default it is "
 "disabled."
 msgstr ""
 
-#: options.php:462
+#: options.php:482
 msgid "yes (Enable gallery mode)"
 msgstr ""
 
-#: options.php:463
+#: options.php:483
 msgid "no (Disable gallery mode)"
 msgstr ""
 
-#: options.php:468
+#: options.php:488
 msgid "Items link to:"
 msgstr ""
 
-#: options.php:469
+#: options.php:489
 msgid ""
 "Whether the link should lead to the attachment page or the actual media file "
 "if gallery mode is enabled. Default is the Media file."
 msgstr ""
 
-#: options.php:473
+#: options.php:493
 msgid "Media file"
 msgstr ""
 
-#: options.php:474
+#: options.php:494
 msgid "Attachment page"
 msgstr ""
 
-#: options.php:481
+#: options.php:501
 msgid "The Query"
 msgstr ""
 
-#: options.php:487
+#: options.php:507
 msgid "Post type"
 msgstr ""
 
-#: options.php:488
+#: options.php:508
 msgid "Default is <code>post</code>."
 msgstr ""
 
-#: options.php:494
+#: options.php:514
 msgid "Items' number"
 msgstr ""
 
-#: options.php:495
+#: options.php:515
 msgid "Default is <code>10</code>"
 msgstr ""
 
-#: options.php:501
+#: options.php:521
 msgid "Category"
 msgstr ""
 
-#: options.php:502
+#: options.php:522
 msgid ""
 "Default is disabled, to get all categories. To get items from a specific "
 "category, use the category ID. You can have multiple categories by adding "
 "IDs separated by comma, like so <code>1,2,3</code>."
 msgstr ""
 
-#: options.php:508
+#: options.php:528
 msgid "Order By"
 msgstr ""
 
-#: options.php:509
+#: options.php:529
 msgid "Default is <code>date</code>."
 msgstr ""
 
-#: options.php:515
+#: options.php:535
 msgid "Order type"
 msgstr ""
 
-#: options.php:516
+#: options.php:536
 msgid "Default is \"DESC\"."
 msgstr ""
 
-#: options.php:520
+#: options.php:540
 msgid "DESC (Descending)"
 msgstr ""
 
-#: options.php:521
+#: options.php:541
 msgid "ASC (Ascending)"
 msgstr ""
 
-#: options.php:526
+#: options.php:546
 msgid "Thumbnail size"
 msgstr ""
 
-#: options.php:527
+#: options.php:547
 msgid ""
 "Default is <code>thumbnail</code>. Other options usually include "
 "<code>medium</code>, <code>large</code> and <code>original</code>, but you "
 "can use your own registered sizes as well."
 msgstr ""
 
-#: options.php:535
+#: options.php:555
 msgid "Item content"
 msgstr ""
 
-#: options.php:540
+#: options.php:560
 msgid "Show thumbnails"
 msgstr ""
 
-#: options.php:541 options.php:552 options.php:563 options.php:574
+#: options.php:561 options.php:572 options.php:583 options.php:594
 msgid "Default is \"yes\"."
 msgstr ""
 
-#: options.php:545
+#: options.php:565
 msgid "yes (Show thumbnails)"
 msgstr ""
 
-#: options.php:546
+#: options.php:566
 msgid "no (Do not show thumbnails)"
 msgstr ""
 
-#: options.php:551
+#: options.php:571
 msgid "Show additional information (namely, title and excerpt) on mouseover."
 msgstr ""
 
-#: options.php:556
+#: options.php:576
 msgid "yes (Show title and excerpt)"
 msgstr ""
 
-#: options.php:557
+#: options.php:577
 msgid "no (Do not show title and excerpt)"
 msgstr ""
 
-#: options.php:562
+#: options.php:582
 msgid "Show excerpt."
 msgstr ""
 
-#: options.php:567
+#: options.php:587
 msgid "yes (Show the excerpt)"
 msgstr ""
 
-#: options.php:568
+#: options.php:588
 msgid "no (Do not show the excerpt)"
 msgstr ""
 
-#: options.php:573
+#: options.php:593
 msgid "Image link."
 msgstr ""
 
-#: options.php:578
+#: options.php:598
 msgid "yes (Use image link)"
 msgstr ""
 
-#: options.php:579
+#: options.php:599
 msgid "no (Remove image link)"
 msgstr ""
 
-#: options.php:589
+#: options.php:609
 msgid "Available parameters"
 msgstr ""
 
-#: options.php:591
+#: options.php:611
 msgid ""
 "The plugin takes advantage of the <code>WP_Query</code> class. If you are "
 "uncertain on which value you should put in each of the parameters below, you "
-"can check it's documentation in the <a href=\"http://codex.wordpress.org/"
+"can check its documentation in the <a href=\"http://codex.wordpress.org/"
 "Class_Reference/WP_Query\" target=\"_blank\">Codex</a>."
 msgstr ""
 
-#: options.php:591
+#: options.php:611
 msgid ""
 "\n"
 "\t\t\t\t\t<li><code>[slidr height=\"some_number\"]</code> : Set the height "
 "for the specific carousel, overriding the defaults like so: <code>[slidr "
 "height=\"200\"]</code>. That way you can have carousels of different sizes "
 "in different pages of your website.</li>\n"
+"\t\t\t\t\t<li><code>[slidr loader=\"no\"]</code> : Shows a \"loading\" "
+"animation until all items are loaded. By default it is enabled.</li>\n"
 "\t\t\t\t\t<li><code>[slidr cycle=\"yes\"]</code> : If enabled, when the "
-"carousel reaches it's first or last item, instead of stopping it loads the "
-"last or first item respectivelly, simulating a circular move.</li>\n"
+"carousel reaches its first or last item, instead of stopping it loads the "
+"last or first item respectivelly, simulating a circular move. With "
+"<code>[slidr cycle=\"auto\"]</code> you can enable autoscoll, which animates "
+"the carousel automatically every 4 seconds.</li>\n"
+"\t\t\t\t\t<li><code>[slidr speed=\"4000\"]</code> : Set the autoscroll speed "
+"in miliseconds. Default value is 4000ms (4 seconds). This option works only "
+"if \"cycle\" parameter, mentioned above, is set to \"auto\".</li>\n"
 "\t\t\t\t\t<li><code>[slidr nav=\"hide\"]</code> : Completely hides the "
 "navigation buttons.</li>\n"
 "\t\t\t\t\t<li><code>[slidr gallery=\"yes\"]</code> : Instead of posts, the "
@@ -482,30 +524,31 @@ msgid ""
 "\t\t\t\t"
 msgstr ""
 
-#: options.php:615
+#: options.php:637
 msgid "Combinations and alternatives"
 msgstr ""
 
-#: options.php:617
+#: options.php:639
 msgid ""
 "You can combine almost all of the above parameters to customize your query. "
-"For example, <code>[slidr type=\"portfolio\" size=\"200\" number=5 category="
-"\"5\" size=\"medium\" excerpt=\"no\" class=\"myworks\"]</code> should create "
-"a carousel of 200 pixels height which would display the five most recent "
-"items from your \"portfolio\" custom post type, AND under a specific "
-"category with the id of \"5\". Items' thumbnails should use the \"medium\" "
-"size and no excerpts should be displayed. Finally, this carousel should have "
-"a custom class \"myworks\".<br/><br/>If you want to add your carousel "
-"directly in your php code, you can use the <code>&lt;?php echo "
-"do_shortcode( '[slidr]' ); ?&gt;</code> function, setting parameters the "
-"same way as previously described."
+"For example, <code>[slidr type=\"portfolio\" height=\"200\" number=5 "
+"category=\"5\" size=\"medium\" excerpt=\"no\" class=\"myworks\" cycle=\"auto"
+"\" speed=\"2000\"]</code> should create a carousel of 200 pixels height "
+"which would display the five most recent items from your \"portfolio\" "
+"custom post type, AND under a specific category with the id of \"5\". Items' "
+"thumbnails should use the \"medium\" size and no excerpts should be "
+"displayed. Finally, this carousel should autoscroll its items every 2000ms "
+"(2 seconds) and it should have a custom class \"myworks\".<br/><br/>If you "
+"want to add your carousel directly in your php code, you can use the "
+"<code>&lt;?php echo do_shortcode( '[slidr]' ); ?&gt;</code> function, "
+"setting parameters the same way as previously described."
 msgstr ""
 
-#: options.php:622
+#: options.php:644
 msgid "Customizing infobox's data"
 msgstr ""
 
-#: options.php:624
+#: options.php:646
 msgid ""
 "Perhaps you might want to alter the default display of the title and excerpt "
 "in the infobox. In that case, you can override the output by adding the "
@@ -526,11 +569,11 @@ msgid ""
 "\t\t\t\t} ?&gt;</code>"
 msgstr ""
 
-#: options.php:634
+#: options.php:656
 msgid "Customizing conditional loading"
 msgstr ""
 
-#: options.php:636
+#: options.php:658
 msgid ""
 "To further customize conditional loading of the plugin's resources, put <br/"
 "><br/><code>&lt;?php function slidr_conditional() { <br/"
@@ -540,11 +583,11 @@ msgid ""
 "wordpress.org/Conditional_Tags\" target=\"_blank\">Codex</a>."
 msgstr ""
 
-#: options.php:641
+#: options.php:663
 msgid "Slidr in widgets"
 msgstr ""
 
-#: options.php:643
+#: options.php:665
 msgid ""
 "If you want to add a carousel in your WordPress Sidebar Widgets, you need to "
 "enable shortcodes in your WordPress sidebar. To do so, paste "
@@ -556,22 +599,22 @@ msgid ""
 "properly."
 msgstr ""
 
-#: options.php:648
+#: options.php:670
 msgid "Minimum requirements"
 msgstr ""
 
-#: options.php:650
+#: options.php:672
 msgid ""
 "This plugin has been initially tested with Wordpress 4.1 and above. It might "
 "probably work with older versions too, but you should always use the latest "
 "version of Wordpress anyway."
 msgstr ""
 
-#: options.php:655
+#: options.php:677
 msgid "I found a bug / I have a suggestion or a feature request."
 msgstr ""
 
-#: options.php:657
+#: options.php:679
 msgid ""
 "You can post a message at the plugin's <a target=\"_blank\" href=\"http://"
 "wordpress.org/support/plugin/slidr\">support forum</a> and I will to my best "

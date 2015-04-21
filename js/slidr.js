@@ -6,6 +6,7 @@ jQuery(document).ready(function($) {
 
     var totalWidth   = 0,
         $slidr  	   = $(this),
+        slidrHeight  = $slidr.outerHeight(true),
         $carousel    = $slidr.find('.slidr-items-container'),
         $container   = $carousel.find('.slidr-items'),
         $item        = $container.find('.slidr-item'),
@@ -18,9 +19,35 @@ jQuery(document).ready(function($) {
         $item.each(function() {
           totalWidth += $(this).outerWidth(true);
         });
-        $container.width(totalWidth);   
-      });   
+        $container.width(totalWidth);
+
+        if( $container.height() > $carousel.height() ) { // On some occassions the carousel's width is one pixel short.
+          $container.width(totalWidth + 1); // When that happens, add the missing pixel.
+        }
+
+        if( $slidr.find('div').first().hasClass('slidr-loader') ) { // If loader is enabled,
+          $('.slidr-loader').delay(500).fadeOut(); // hide it when all images are loaded.
+        }
+
+        if( $slidr.width() >= $container.outerWidth() ) { // If the items width is shorter that the carousel width, hide the next button
+          $navNext.hide();
+        }
+        
+      }); // $(window).load();
     }
+
+    function autoScroll() { // Autoscroll
+      if( $slidr.hasClass('slidr-autoscroll') ) {
+        var autoSlide = (function() { $navNext.trigger('click'); }),
+            delay     = $slidr.data('speed') !== undefined ? $slidr.data('speed') : 4000,
+            timer     = setInterval(autoSlide, delay);
+        $slidr.on('mouseover', function(){
+          clearInterval(timer);
+        }).on('mouseout', function(){
+          timer = setInterval(autoSlide, delay);
+        });
+      }      
+    } // autoScroll()
 
     function slideCarousel() { // Cycle through the items
       var carouselWidth   = $carousel.outerWidth(),
@@ -60,12 +87,16 @@ jQuery(document).ready(function($) {
 
     function interactions() { // Set the interactions on click of a nav button and on scroll (or swipe)
       $navNext.on('click', function() { // Click right button
-        $carousel.animate({ 'scrollLeft': '+=200' });
-        slideCarousel();
+        $carousel.animate({ 'scrollLeft': '+='+slidrHeight });
+        if( $carousel.scrollLeft() !== 0 ) {
+          slideCarousel();
+        }
       });
       $navPrev.on('click', function() { // Click left button
-        $carousel.animate({ 'scrollLeft': '-=200' });
-        slideCarousel();
+        $carousel.animate({ 'scrollLeft': '-='+slidrHeight });
+        if( $carousel.scrollLeft() === 0 ) {
+          slideCarousel();
+        }
       });
 
       if( ! $slidr.hasClass('slidr-cycle') ) { // If cycle items isn't enabled...
@@ -99,13 +130,14 @@ jQuery(document).ready(function($) {
         } else if( touchStart < touchEnd && noPrev ) {
           $navPrev.trigger( 'click' );
         }
-      });      
+      });
     } // swipeToCycle();
 
     containerWidth();
+    autoScroll();
     interactions();
     swipeToCycle();
-    
+
   }); // $('.slidr-container').each();
 
 });
