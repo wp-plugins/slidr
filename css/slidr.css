@@ -35,3 +35,17 @@
 .slidr-nav-hidden {
   display: none;
 }
+.slidr-click-next {
+  text-align: right;
+}
+.slidr-click-prev {
+  text-align: left;
+}
+.slidr-click-next .slidr-item img {
+  position: absolute;
+  left: 0;
+}
+.slidr-click-prev .slidr-item img {
+  position: absolute;
+  right: 0;
+}

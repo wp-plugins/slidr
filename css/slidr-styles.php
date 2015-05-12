@@ -41,7 +41,8 @@
         height: {$carousel_height}px;
       }
       .slidr-nav,
-      .slidr-container.default .slidr-nav {
+      .slidr-container.default .slidr-nav,
+      .slidr-loader > div {
         top: {$nav_position}px;
       }
       {$custom_styles}

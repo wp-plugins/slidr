@@ -9,7 +9,8 @@
 	function item_content( $link = null, $content = null, $a = null ) {
 		ob_start();
 		if( $a['img_link'] 	!== 'no' ) {
-			echo '<a href="' . $link . '" rel="bookmark">';
+			$aclass = !empty($a['link_class']) && isset($a['link_class']) ? ' class="'.$a['link_class'].'"' : '';
+			echo '<a href="' . $link . '" rel="bookmark"' . $aclass . '>';
 			echo $content;
 			echo '</a>';
 		} else {

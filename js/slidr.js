@@ -12,44 +12,74 @@ jQuery(document).ready(function($) {
         $item        = $container.find('.slidr-item'),
         $nav         = $(this).find('.slidr-nav'),
         $navPrev     = $(this).find('.slidr-nav-prev'),
-        $navNext     = $(this).find('.slidr-nav-next');
+        $navNext     = $(this).find('.slidr-nav-next'),
+        carHeight    = parseFloat( $carousel.css('height') );
 
+    /* = Prepare the Carousel container
+    ----------------------------------------------- */
     function containerWidth() { // Set container width
       $(window).load(function() { // We run it on window.load() because we need all our images loaded before starting calculate the items' widths.
         $item.each(function() {
+          var img   = $(this).find('img'),
+              width = parseFloat( img.css('width') );
+          parseFloat( $(this).css('width', width) ); // Each image container should have the same width as the image (otherwise long titles might disrupt it).
           totalWidth += $(this).outerWidth(true);
         });
-        $container.width(totalWidth);
+        parseFloat( $container.css('width', totalWidth) );
 
-        if( $container.height() > $carousel.height() ) { // On some occassions the carousel's width is one pixel short.
-          $container.width(totalWidth + 1); // When that happens, add the missing pixel.
-        }
+        missingPixel();
 
         if( $slidr.find('div').first().hasClass('slidr-loader') ) { // If loader is enabled,
-          $('.slidr-loader').delay(500).fadeOut(); // hide it when all images are loaded.
+          $('.slidr-loader').delay(200).fadeOut(); // hide it when all images are loaded.
         }
-
-        if( $slidr.width() >= $container.outerWidth() ) { // If the items width is shorter that the carousel width, hide the next button
+        if( parseFloat( $slidr.css('width') ) >= $container.outerWidth() ) { // If the items width is shorter that the carousel width, hide the next button
           $navNext.hide();
         }
-        
-      }); // $(window).load();
+      }); // $(window).load(); 
     }
 
-    function autoScroll() { // Autoscroll
+    /* = Fix missing pixels
+    ----------------------------------------------- */
+    function missingPixel() {
+      if( parseFloat( $container.css('height') ) > carHeight ) { // On some occassions the carousel's width is one pixel short.
+        $container.css('width', parseFloat( $container.css('width') ) + 1); // When that happens, add the missing pixel.
+      }
+    }
+
+    /* = Slide items
+    ----------------------------------------------- */
+    function slideItems(direction) {
+
+      var classToRemove = (direction === 'prev') ? 'slidr-click-next' : 'slidr-click-prev',
+          classToAdd    = (direction === 'prev') ? 'slidr-click-prev' : 'slidr-click-next',
+          condition     = (direction === 'prev') ? ($carousel.scrollLeft() === 0) : ($carousel.scrollLeft() !== 0),
+          navDir        = (direction === 'prev') ? '-=' : '+=';
+
+      $container.removeClass( classToRemove ).addClass( classToAdd );
+      if( condition ) {
+        slideCarousel();
+      }
+      $carousel.animate({ 'scrollLeft': navDir+slidrHeight });
+    }
+
+    /* = Autoscroll
+    ----------------------------------------------- */
+    function autoScroll() {
       if( $slidr.hasClass('slidr-autoscroll') ) {
-        var autoSlide = (function() { $navNext.trigger('click'); }),
+        var autoSlide = (function() { slideItems(); }),
             delay     = $slidr.data('speed') !== undefined ? $slidr.data('speed') : 4000,
             timer     = setInterval(autoSlide, delay);
         $slidr.on('mouseover', function(){
           clearInterval(timer);
         }).on('mouseout', function(){
-          timer = setInterval(autoSlide, delay);
+          timer = setInterval(autoSlide, delay);         
         });
-      }      
+      }    
     } // autoScroll()
 
-    function slideCarousel() { // Cycle through the items
+    /* = Cycle through items
+    ----------------------------------------------- */
+    function slideCarousel() {
       var carouselWidth   = $carousel.outerWidth(),
           containerWidth  = $container.outerWidth(),
           grabNum         = ( ($carousel.scrollLeft() + carouselWidth) >= (containerWidth - 1) ) ? 0 : -1,
@@ -58,20 +88,19 @@ jQuery(document).ready(function($) {
           $setFirst       = $item.first(),
           $setLast        = $item.last(),
           nextWidth       = grabNext.outerWidth(),
-          thumbWidth      = $item.hasClass('no-thumb') ? nextWidth + 'px' : 'auto';
-
+          setNextImg      = function(){
+            grabNext.find('img').css({'min-width': nextWidth + 'px'});
+          };
       if( $slidr.hasClass('slidr-cycle') ) { // Check if cycle items is enabled
 
         if( ($carousel.scrollLeft() + carouselWidth) >= (containerWidth - 1) ) { // If we are at the end (-1 goes for Chrome which tends to miss a pixel)
-
-          grabNext.animate({
-            'width': '0'
-          }, 300, function() {
-            $(this).css({'top': '50px', 'position': 'absolute', 'opacity': '0'}).insertAfter($setLast).animate({'top': '0', 'opacity': '1'}, 300).css({'position':'relative', 'width': thumbWidth});
-          });
+          setNextImg();
+          grabNext.css({'width': '0'}).insertAfter($setLast).animate({'width': nextWidth + 'px'});
+          missingPixel();
         }
         if( $carousel.scrollLeft() === 0 ) { // If we are at the beginning 
-          grabNext.css({'top': '50px', 'position': 'absolute', 'opacity': '0', 'width': '0'}).insertBefore($setFirst).animate({'top': '0', 'opacity': '1', 'width': nextWidth + 'px'}, 300).css({'position':'relative'});
+          setNextImg();
+          grabNext.css({'width': '0'}).insertBefore($setFirst).animate({'width': nextWidth + 'px'});
         }
       } else { // If cycle items isn't enabled...
         if ( ($carousel.scrollLeft() + carouselWidth) >= (containerWidth - 1) ) { // ...and if we are at the end
@@ -82,38 +111,34 @@ jQuery(document).ready(function($) {
           $nav.fadeIn();
         }
       }
-
     } // slideCarousel() 
 
+    /* = Set the interactions
+    ----------------------------------------------- */
     function interactions() { // Set the interactions on click of a nav button and on scroll (or swipe)
       $navNext.on('click', function() { // Click right button
-        $carousel.animate({ 'scrollLeft': '+='+slidrHeight });
-        if( $carousel.scrollLeft() !== 0 ) {
-          slideCarousel();
-        }
+        slideItems();
       });
       $navPrev.on('click', function() { // Click left button
-        $carousel.animate({ 'scrollLeft': '-='+slidrHeight });
-        if( $carousel.scrollLeft() === 0 ) {
-          slideCarousel();
-        }
+        slideItems('prev');
       });
 
       if( ! $slidr.hasClass('slidr-cycle') ) { // If cycle items isn't enabled...
         $carousel.on('scroll', function() { // Scroll (swipe on touch devices)
-          slideCarousel();   
+          slideCarousel();
         });
         if ( $carousel.outerWidth() > $container.outerWidth() ) { // ...and if the carousel width is bigger than the items' container,
           $nav.hide(); // hide nav buttons
         }
         if ( $carousel.scrollLeft() === 0  ) { // Also, if we are at the beginnining, 
-          $navPrev.hide(); // hide the "previous" button anyway.
+          $navPrev.hide(); // hide the "previous" button.
         }
       }
-
     } // interactions();
 
-   function swipeToCycle() { // When at the carousel's start or end, cycle through items on swipe
+    /* = Touch events
+    ----------------------------------------------- */
+    function swipeToCycle() { // When at the carousel's start or end, cycle through items on swipe
       var swipeStart  = window.navigator.pointerEnabled ? 'pointerdown' : 'touchstart',
           swipeEnd    = window.navigator.pointerEnabled ? 'pointerup'   : 'touchend',
           touchStart;
@@ -126,18 +151,33 @@ jQuery(document).ready(function($) {
             noNext    = window.navigator.pointerEnabled ? true : $carousel.scrollLeft() + carW >= (conW - 1),
             noPrev    = window.navigator.pointerEnabled ? true : $carousel.scrollLeft() === 0;
         if( touchStart > touchEnd && noNext ) {
-          $navNext.trigger( 'click' );
+          slideItems();
         } else if( touchStart < touchEnd && noPrev ) {
-          $navPrev.trigger( 'click' );
+          slideItems('prev');
         }
       });
     } // swipeToCycle();
 
+    /* = Call the functions
+    ----------------------------------------------- */
     containerWidth();
     autoScroll();
     interactions();
     swipeToCycle();
 
-  }); // $('.slidr-container').each();
+    /* = Refresh on carousel's height change
+    ----------------------------------------------- */
+    var lastHeight = $slidr.css('height');
+    function refresh() {
+      if( $slidr.css('height') != lastHeight ) {
+        location.reload(false);
+      }
+    }
+    var tOut;
+    $(window).resize(function() {
+      clearTimeout(tOut);
+      tOut = setTimeout(refresh, 300);
+    });
 
+  }); // $('.slidr-container').each();
 });
