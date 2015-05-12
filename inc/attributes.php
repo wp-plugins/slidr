@@ -21,7 +21,6 @@
 	$nav_buttons_def 	= slidr('nav_buttons') == 0 ? 'hide' : false;
 	$nav_cycle_def 		= slidr('nav_cycle') !== 'no' ? slidr('nav_cycle') : false;
 
-
 	/* 
 		Shortcode attributes. Use it like this:
 		[slidr attribute="value"]
@@ -47,6 +46,9 @@
 		'loader' 		=> $loader_def,					// [slidr loader="yes"]
 		'speed' 		=> $scroll_speed_def,			// [slidr speed="2000"]
 		'class'			=> '',	 						// [slidr class="myclass"]
+		'link' 			=> false,						// [slidr link="none"]
+		'link_class' 	=> '',							// [slidr link_class="myclass"]
+		'template' 		=> false, 						// [slidr template="no"]
 	), $atts );
 
  ?>

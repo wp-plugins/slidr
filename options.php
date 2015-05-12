@@ -25,7 +25,8 @@ class SLidr_Options {
 		$this->get_settings();
 		
 		$this->sections['settings']   	= __( 'Main Settings' , 'slidr' );
-		$this->sections['defaults']    	= __( 'Defaults' , 'slidr' );
+		$this->sections['gallery']    	= __( 'WordPress Gallery' , 'slidr' );
+		$this->sections['defaults']    	= __( 'Slidr Defaults' , 'slidr' );
 		$this->sections['about']     	= __( 'Documentation' , 'slidr' );
 		
 		add_action( 'admin_menu', array( &$this, 'add_pages' ) );
@@ -85,7 +86,7 @@ class SLidr_Options {
 		
 		add_settings_field( $id, $title, array( $this, 'display_setting' ), 'slidr-options', $section, $field_args );
 	}
-	
+
 	/**
 	 * Display options page
 	 *
@@ -298,6 +299,11 @@ class SLidr_Options {
 	 * @since 1.0
 	 */
 	public function get_settings() {
+
+		/*
+			Set default values
+		*/
+		require dirname(__FILE__) . '/inc/gallery-defaults.php';
 		
 		/* Carousel settings
 		===========================================*/
@@ -406,7 +412,126 @@ class SLidr_Options {
 				'std'     => 0
 			);
 
-		/* Defaults
+		/* Gallery Shortcode
+		===========================================*/
+
+
+		$this->settings['gallery_default'] = array( // Carousel container.
+			'section' => 'gallery',
+			'title'   => '',
+			'desc'    => __( 'Slidr for Gallery' , 'slidr' ),
+			'type'    => 'heading',
+			'para'	  => __( 'Replace the default WordPress gallery (<code>[gallery]</code> shortcode) with Slidr. Doing so you will be able to use the default gallery management mechanism of WordPress as usual and the output will be displayed in a Slidr carousel. In a typical use case, you wouldn\'t need to mess with shortcodes - just create a gallery via the WordPress editor as you would anyway and see the results.' , 'slidr' )
+		);
+
+			$this->settings['g_shortcode'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Use Slidr for Gallery' , 'slidr' ),
+				'desc'    => __( 'Replace the default WordPress gallery with Slidr.' , 'slidr' ),
+				'type'    => 'checkbox',
+				'std'     => $g_enabled_def
+			);
+		
+		$this->settings['gallery_settings'] = array( // Carousel container.
+			'section' => 'gallery',
+			'title'   => '',
+			'desc'    => __( 'Default settings' , 'slidr' ),
+			'type'    => 'heading',
+			'para'	  => __( 'Set the defaults for the <code>[gallery]</code> shortcode. Only works if <strong>Slidr for Gallery</strong> is enabled.' , 'slidr' )
+		);
+			$this->settings['g_height'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Carousel height' , 'slidr' ),
+				'desc'    => __( 'Change the default (which is 150 pixels) height of the carousel.' , 'slidr' ),
+				'type'    => 'text',
+				'std'     => $g_height_def
+			);
+			$this->settings['g_size'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Thumbnail size' , 'slidr' ),
+				'desc'    => __( 'Default is <code>thumbnail</code>. Other options usually include <code>medium</code>, <code>large</code> and <code>original</code>, but you can use your own registered sizes as well.' , 'slidr' ),
+				'type'    => 'text',
+				'std'     => $g_size_def
+			);
+			$this->settings['g_loader'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Show loader' , 'slidr' ),
+				'desc'    => __( 'Show a "loading" animation untill all items are loaded. Uncheck to disable.' , 'slidr' ),
+				'type'    => 'checkbox',
+				'std'     => $g_loader_def
+			);
+			$this->settings['g_cycle'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Cycle items' , 'slidr' ),
+				'desc'    => __( 'If enabled, when the carousel reaches it\'s first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move. Auto scroll enables the cycling and scrolls it automatically.' , 'slidr' ),
+				'type'    => 'select',
+				'std'     => $g_cycle_def,
+				'choices' => array(
+					'no' 	=> __( 'Disabled' , 'slidr' ),
+					'yes' 	=> __( 'Enabled' , 'slidr' ),
+					'auto' 	=> __( 'Auto scroll' , 'slidr' )
+				)
+			);
+			$this->settings['g_speed'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Autoscroll speed' , 'slidr' ),
+				'desc'    => __( 'Autoscroll speed in miliseconds (1000ms = 1 second). Default is 4000 (4 seconds).' , 'slidr' ),
+				'type'    => 'text',
+				'std'     => $g_speed_def
+			);
+			$this->settings['g_nav'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Show navigation' , 'slidr' ),
+				'desc'    => __( 'If you want to hide the navigation buttons, uncheck this.' , 'slidr' ),
+				'type'    => 'checkbox',
+				'std'     => $g_nav_def
+			);
+			$this->settings['g_info_box'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Show additional information (namely, title and caption) on mouseover.' , 'slidr' ),
+				'desc'    => __( 'Default is "yes".' , 'slidr' ),
+				'type'    => 'radio',
+				'std'     => $g_info_box_def,
+				'choices' => array(
+					'yes' 	=> __( 'yes (Show title and caption)' , 'slidr' ),
+					'no' 	=> __( 'no (Do not show title and caption)' , 'slidr' )
+				)
+			);
+			$this->settings['g_title'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Use caption as title if title is empty or same as item\'s filename.' , 'slidr' ),
+				'desc'    => __( 'When you upload an image, WordPress gets its filename and displays it as the title. If Slidr finds that the title and filename are the same and if a caption exists, it uses the caption as the item]\'s title. Otherwise it will hide the infobox for the particular item. If for some reason you don\'t like that behaviour, you can disable it here.' , 'slidr' ),
+				'type'    => 'radio',
+				'std'     => 'yes',
+				'choices' => array(
+					'yes' 	=> __( 'Enabled' , 'slidr' ),
+					'no' 	=> __( 'Disabled' , 'slidr' )
+				)
+			);
+			$this->settings['g_excerpt'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Show caption.' , 'slidr' ),
+				'desc'    => __( 'Default is "no".' , 'slidr' ),
+				'type'    => 'radio',
+				'std'     => $g_excerpt_def,
+				'choices' => array(
+					'yes' 	=> __( 'yes (Show the caption)' , 'slidr' ),
+					'no' 	=> __( 'no (Do not show the caption)' , 'slidr' )
+				)
+			);
+			$this->settings['g_img_link'] = array(
+				'section' => 'gallery',
+				'title'   => __( 'Image link.' , 'slidr' ),
+				'desc'    => __( 'Default is "yes".' , 'slidr' ),
+				'type'    => 'radio',
+				'std'     => $g_img_link_def,
+				'choices' => array(
+					'yes' 	=> __( 'yes (Use image link)' , 'slidr' ),
+					'no' 	=> __( 'no (Remove image link)' , 'slidr' )
+				)
+			);
+
+		/* Slidr Defaults
 		===========================================*/
 
 		$this->settings['defaults'] = array(
@@ -414,7 +539,7 @@ class SLidr_Options {
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Override defaults' , 'slidr' ),
 			'type'    => 'heading',
-			'para'	  => __( 'Perhaps you dont\'t intent to use many different types of carousel but instead you want to use it in a very specific way. For example, always get the same post type, or always use it as a simple image gallery etc. To avoid passing the same parameters everytime you use the shortcode, you can set the defaults below. That way, you can get the desired result with a simple <code>[slidr]</code>. Passing parameters for each shortcode is still valid and if you do so, it will override those defaults. The plugin takes advantage of the <code>WP_Query</code> class. If you are uncertain on which value you should put in each of the parameters below, you can check the respective documentation in the <a href="http://codex.wordpress.org/Class_Reference/WP_Query" target="_blank">Codex</a>.' , 'slidr' )
+			'para'	  => __( 'Perhaps you don\'t intent to use many different types of carousel but instead you want to use it in a very specific way. For example, always get the same post type, or always use it as a simple image gallery etc. To avoid passing the same parameters everytime you use the shortcode, you can set the defaults below. That way, you can get the desired result with a simple <code>[slidr]</code>. Passing parameters for each shortcode is still valid and if you do so, it will override those defaults. The plugin takes advantage of the <code>WP_Query</code> class. If you are uncertain on which value you should put in each of the parameters below, you can check the respective documentation in the <a href="http://codex.wordpress.org/Class_Reference/WP_Query" target="_blank">Codex</a>.' , 'slidr' )
 		);
 
 		$this->settings['container_def'] = array( // Carousel container.
@@ -577,6 +702,17 @@ class SLidr_Options {
 					'no' 	=> __( 'no (Do not show title and excerpt)' , 'slidr' )
 				)
 			);
+			$this->settings['smart_title'] = array(
+				'section' => 'defaults',
+				'title'   => __( 'Use caption as title if title is empty or same as item\'s filename.' , 'slidr' ),
+				'desc'    => __( 'When you upload an image, WordPress gets its filename and displays it as the title. If Slidr finds that the title and filename are the same and if a caption exists, it uses the caption as the item]\'s title. Otherwise it will hide the infobox for the particular item. If for some reason you don\'t like that behaviour, you can disable it here.' , 'slidr' ),
+				'type'    => 'radio',
+				'std'     => 'yes',
+				'choices' => array(
+					'yes' 	=> __( 'Enabled' , 'slidr' ),
+					'no' 	=> __( 'Disabled' , 'slidr' )
+				)
+			);
 			$this->settings['excerpt'] = array(
 				'section' => 'defaults',
 				'title'   => __( 'Show excerpt.' , 'slidr' ),
@@ -629,7 +765,32 @@ class SLidr_Options {
 					<li><code>[slidr excerpt="no"]</code> : Hide the excerpt from the info box.</li>
 					<li><code>[slidr img_link="no"]</code> : Remove the link from each image.</li>
 					<li><code>[slidr class="yourclass"]</code> : If you have carousels in many different pages, there is a chance that you want to style them separately. With this option you can add a custom class at the carousel\'s outer container and customize it using CSS.</li>
+					<li><code>[slidr link="none"]</code> : Removes the link from the title (in case you want to show the details of an image but not link to its attachment page or media file).</li>
+					<li><code>[slidr template="no"]</code> : Removes the default template for the specific carousel. That way you can keep the default template for all other carousel instances but remove it for those you wish to style differently.</li>
 				' , 'slidr' ) . '</ol>'
+		);
+		$this->settings['doc_gallery'] = array(
+			'section' => 'about',
+			'title'   => '', // Not used for headings.
+			'desc'    => __( 'Replace default WordPress gallery' , 'slidr' ),
+			'type'    => 'heading',
+			'para'	  => __( 'By enabling <strong>"Use Slidr for Gallery"</strong> under the <strong>"WordPress Gallery"</strong> tab, you can replace the default WordPress gallery ([gallery] shortcode) with Slidr. Doing so you will be able to use the default gallery management mechanism of WordPress as usual and the output will be displayed in a Slidr carousel. In a typical use case, you wouldn\'t need to mess with shortcodes - just create a gallery via the WordPress editor as you would anyway and see the results. For example, you can order set the order via the Gallery Management screen, set the titles and captions of each image and define whether clicking on images should get to the media file, attachment page or do nothing. Keep in mind that in those cases the outputted shortcode is not [slidr] but <strong>[gallery]</strong> and that many of the aforementioned parameters for the [slidr] shortcode don\'t make sense in a gallery context and won\'t work there. Those which do work are the following:', 'slidr' ) . '<ol class="doc_list">' . __( '
+					<li><code>[gallery height="some_number"]</code> : Set the height of the gallery.</li>
+					<li><code>[gallery loader="no"]</code> : Shows a "loading" animation until all items are loaded.</li>
+					<li><code>[gallery cycle="yes"]</code> : If enabled, when the carousel reaches its first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move. With <code>[gallery cycle="auto"]</code> you can enable autoscoll, which animates the carousel automatically every 4 seconds.</li>
+					<li><code>[gallery speed="4000"]</code> : Set the autoscroll speed in miliseconds. Default value is 4000ms (4 seconds). This option works only if "cycle" parameter, mentioned above, is set to "auto".</li>
+					<li><code>[gallery nav="hide"]</code> : Completely hides the navigation buttons.</li>
+					<li><code>[gallery orderby="menu_order ID"]</code> : The items\' order. Default order is by the order passed at the media manager.</li>
+					<li><code>[gallery order="ASC"]</code> : Whether the order will be ascending (ASC) or descentind (DESC). Default is "ASC" (ascending).</li>
+					<li><code>[gallery size="thumbnail"]</code> : The thumbnail size, based on the registered sizes of your theme. Default value is "thumbnail". Other options usually include "medium", "large" and "original".</li>
+					<li><code>[gallery thumb="no"]</code> : If you need the carousel to display posts without thumbnails, you can completely disable images. Default value is enabled, of course.</li>
+					<li><code>[gallery info_box="no"]</code> : By default each item shows a box with the title and excerpt on mouseover or tap. With this option you can disable it.</li>
+					<li><code>[gallery excerpt="no"]</code> : Hide the excerpt from the info box.</li>
+					<li><code>[gallery img_link="no"]</code> : Remove the link from each image.</li>
+					<li><code>[gallery class="yourclass"]</code> : If you have carousels in many different pages, there is a chance that you want to style them separately. With this option you can add a custom class at the carousel\'s outer container and customize it using CSS.</li>
+					<li><code>[gallery link="none"]</code> : Removes the link from the title (in case you want to show the details of an image but not link to its attachment page or media file).</li>
+					<li><code>[gallery template="no"]</code> : Removes the default template for the specific carousel. That way you can keep the default template for all other carousel instances but remove it for those you wish to style differently.</li>
+			' , 'slidr' )
 		);
 		$this->settings['doc_combine'] = array(
 			'section' => 'about',
@@ -647,6 +808,33 @@ class SLidr_Options {
 				<code>&lt;?php function slidr_custom_content( $link, $title, $excerpt, $a ) { <br/>
 					if($a[\'gallery\'] !== \'yes\') { <br/>
 						// Do something <br/>
+					}<br/>
+				} ?&gt;</code>'  , 'slidr' )
+		);
+		$this->settings['doc_defaults'] = array(
+			'section' => 'about',
+			'title'   => '', // Not used for headings.
+			'desc'    => __( 'Overriding default values' , 'slidr' ),
+			'type'    => 'heading',
+			'para'	  => __( 'If you are a theme developer, you can pass your own default values for the [gallery] shortcode directly in your theme. That way you don\'t need to instruct your users to go and set the appropriate values at the Plugin\'s options or ask them to mess with the shortcode. You can use it like this:<br/><br/>
+				<code>&lt;?php include_once( ABSPATH . \'wp-admin/includes/plugin.php\' );<br/>
+				if ( is_plugin_active( \'slidr/slidr.php\' ) ) {<br/>
+					function slidr_gallery_defaults() {<br/>
+						$default[\'enable\'] 		= \'yes\'; 	// Enable or disable Slidr for Gallery option by default <br/>
+						$default[\'height\'] 		= \'500\'; 	// The gallery height <br/>
+						$default[\'size\'] 		= \'medium\'; // Thumbnail size <br/>
+						$default[\'speed\'] 		= \'4000\'; 	// Carousel speed if "cycle" mode is set to "auto" <br/>
+						$default[\'info_box\'] 	= \'yes\'; 	// Show or hide infobox <br/>
+						$default[\'excerpt\'] 	= \'no\'; 	// Show or hide excerpt <br/>
+						$default[\'loader\'] 		= \'yes\'; 	// Use loading animation <br/>
+						$default[\'nav\'] 		= \'show\'; 	// Show or hide navigation buttons <br/> 
+						$default[\'cycle\'] 		= \'no\'; 	// Enable or disable "cycle" mode (options are "yes", "no" and "auto") <br/>
+						$default[\'template\'] 	= \'no\'; 	// Disable the default template <br/>
+						$default[\'class\']		= \'myclass\' // Pass your class to the container <br/>
+						$default[\'link_class\'] 	= \'myclass\' // Pass class to the link <br/>
+						$default[\'img_link\'] 	= \'no\' 		// Enable or disable image link <br/>
+						
+						return $default; <br/>
 					}<br/>
 				} ?&gt;</code>'  , 'slidr' )
 		);

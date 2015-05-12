@@ -3,8 +3,8 @@ Contributors: gsarig
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RTB3APJDMT9UN
 Tags: carousel, image carousel, thumbnail slider, slideshow, gallery, image gallery
 Requires at least: 4.0
-Tested up to: 4.2
-Stable tag: 1.1.2
+Tested up to: 4.2.2
+Stable tag: 1.2
 License: GPLv2 or later
 
 A clean, simple, responsive and touch-friendly Carousel with no bells and whistles but plenty of flexibility. 
@@ -20,6 +20,7 @@ Slidr is a clean, simple, responsive and touch-friendly multi-purpose Carousel. 
 * Touch friendly.
 * Can accept variable width - fixed height images.
 * You can call it via a shortcode on posts, pages and widgets.
+* You can use it instead of the default WordPress gallery. No need to mess with shortcodes - just enable "Slidr for Gallery" and start creating galleries as usual, the WordPress way!
 * Supports cycling items (when at the end, clicking "next" loads the first item and so on, simulating a circular move).
 * Autoscroll support.
 * Customizable queries with more than a dozen of parameters. You can adjust the post type, number of entries, thumbnail size, order and many more.
@@ -28,6 +29,7 @@ Slidr is a clean, simple, responsive and touch-friendly multi-purpose Carousel. 
 * It can display entries without photos. For example, you can show the titles and excerpts of your recent posts (or custom posts) and style them however you like.
 * Using a special function you can override the text output for each item. For example, instead of the item's title and excerpt you can show an icon, some static text or something else.
 * You can add your custom class on each shortcode, to style each carousel differently.
+* If you are a theme developer, you can pass your own default values through your theme's functions.php for "Slidr for Gallery" option.
 * Works on every recent version of all popular browsers (Firefox, Chrome, Internet Explorer, Opera, Safari) and it even supports Internet Explorer 8.
 
 == Installation ==
@@ -41,7 +43,7 @@ Slidr is a clean, simple, responsive and touch-friendly multi-purpose Carousel. 
 
 Just go to the page you want to show your carousel and add the [slidr] shortcode. This should create a carousel with the default settings, meaning that it will get all the recent posts and display them in descending order. You can customize the output by overriding the default settings with your own values like so: [slidr parameter="value"]. For a full list of the available parameters, see below.
 
-= Carousel parameters =
+= [slidr] shortcode options =
 * <code>[slidr height="some_number"]</code> : Set the height for the specific carousel, overriding the defaults like so: <code>[slidr height="200"]</code>. That way you can have carousels of different sizes in different pages of your website.
 * <code>[slidr loader="no"]</code> : Shows a "loading" animation until all items are loaded. By default it is enabled.
 * <code>[slidr cycle="yes"]</code> : If enabled, when the carousel reaches its first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move. With <code>[slidr cycle="auto"]</code> you can enable autoscoll, which animates the carousel automatically every 4 seconds.
@@ -62,12 +64,59 @@ Just go to the page you want to show your carousel and add the [slidr] shortcode
 * <code>[slidr excerpt="no"]</code> : Hide the excerpt from the info box.
 * <code>[slidr img_link="no"]</code> : Remove the link from each image.
 * <code>[slidr class="yourclass"]</code> : If you have carousels in many different pages, there is a chance that you want to style them separately. With this option you can add a custom class at the carousel's outer container and customize it using CSS.
+* <code>[slidr link="none"]</code> : Removes the link from the title (in case you want to show the details of an image but not link to its attachment page or media file).
+* <code>[slidr template="no"]</code> : Removes the default template for the specific carousel. That way you can keep the default template for all other carousel instances but remove it for those you wish to style differently.
+
+= Replace the default WordPress gallery =
+By enabling <strong>"Use Slidr for Gallery"</strong> under the <strong>"WordPress Gallery"</strong> tab, you can replace the default WordPress gallery ([gallery] shortcode) with Slidr. Doing so you will be able to use the default gallery management mechanism of WordPress as usual and the output will be displayed in a Slidr carousel. In a typical use case, you wouldn't need to mess with shortcodes - just create a gallery via the WordPress editor as you would anyway and see the results. For example, you can order set the order via the Gallery Management screen, set the titles and captions of each image and define whether clicking on images should get to the media file, attachment page or do nothing. Keep in mind that in those cases the outputted shortcode is not [slidr] but <strong>[gallery]</strong> and that many of the aforementioned parameters for the [slidr] shortcode don't make sense in a gallery context and won't work there. Those which do work are the following:
+
+* <code>[gallery height="some_number"]</code> : Set the height of the gallery.
+* <code>[gallery loader="no"]</code> : Shows a "loading" animation until all items are loaded.
+* <code>[gallery cycle="yes"]</code> : If enabled, when the carousel reaches its first or last item, instead of stopping it loads the last or first item respectivelly, simulating a circular move. With <code>[gallery cycle="auto"]</code> you can enable autoscoll, which animates the carousel automatically every 4 seconds.
+* <code>[gallery speed="4000"]</code> : Set the autoscroll speed in miliseconds. Default value is 4000ms (4 seconds). This option works only if "cycle" parameter, mentioned above, is set to "auto".
+* <code>[gallery nav="hide"]</code> : Completely hides the navigation buttons.
+* <code>[gallery orderby="menu_order ID"]</code> : The items' order. Default order is by the order passed at the media manager.
+* <code>[gallery order="ASC"]</code> : Whether the order will be ascending (ASC) or descentind (DESC). Default is "ASC" (ascending).
+* <code>[gallery size="thumbnail"]</code> : The thumbnail size, based on the registered sizes of your theme. Default value is "thumbnail". Other options usually include "medium", "large" and "original".
+* <code>[gallery thumb="no"]</code> : If you need the carousel to display posts without thumbnails, you can completely disable images. Default value is enabled, of course.
+* <code>[gallery info_box="no"]</code> : By default each item shows a box with the title and excerpt on mouseover or tap. With this option you can disable it.
+* <code>[gallery excerpt="no"]</code> : Hide the excerpt from the info box.
+* <code>[gallery img_link="no"]</code> : Remove the link from each image.
+* <code>[gallery class="yourclass"]</code> : If you have carousels in many different pages, there is a chance that you want to style them separately. With this option you can add a custom class at the carousel's outer container and customize it using CSS.
+* <code>[gallery link="none"]</code> : Removes the link from the title (in case you want to show the details of an image but not link to its attachment page or media file).
+* <code>[gallery template="no"]</code> : Removes the default template for the specific carousel. That way you can keep the default template for all other carousel instances but remove it for those you wish to style differently.
 
 = Combinations and alternatives =
 
 You can combine almost all of the above parameters to customize your query. For example, <code>[slidr type="portfolio" height="200" number=5 category="5" size="medium" excerpt="no" class="myworks" cycle="auto" speed="2000"]</code> should create a carousel of 200 pixels height which would display the five most recent items from your "portfolio" custom post type, AND under a specific category with the id of "5". Items' thumbnails should use the "medium" size and no excerpts should be displayed. Finally, this carousel should autoscroll its items every 2000ms (2 seconds) and it should have a custom class "myworks".
 
 If you want to add your carousel directly in your php code, you can use the <code>&lt;?php echo do_shortcode( '[slidr]' ); ?&gt;</code> function, setting parameters the same way as previously described.
+
+= Overriding default values =
+If you are a theme developer, you can pass your own default values for the [gallery] shortcode directly in your theme. That way you don't need to instruct your users to go and set the appropriate values at the Plugin's options or ask them to mess with the shortcode. You can use it like this:
+
+<code>
+&lt;?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( is_plugin_active( 'slidr/slidr.php' ) ) {
+	function slidr_gallery_defaults() {
+		$default['enable'] 		= 'yes'; 	// Enable or disable Slidr for Gallery option by default 
+		$default['height'] 		= '500'; 	// The gallery height 
+		$default['size'] 		= 'medium'; // Thumbnail size 
+		$default['speed'] 		= '4000'; 	// Carousel speed if "cycle" mode is set to "auto" 
+		$default['info_box'] 	= 'yes'; 	// Show or hide infobox 
+		$default['excerpt'] 	= 'no'; 	// Show or hide excerpt 
+		$default['loader'] 		= 'yes'; 	// Use loading animation 
+		$default['nav'] 		= 'show'; 	// Show or hide navigation buttons  
+		$default['cycle'] 		= 'no'; 	// Enable or disable "cycle" mode (options are "yes", "no" and "auto") 
+		$default['template'] 	= 'no'; 	// Disable the default template 
+		$default['class']		= 'myclass' // Pass your class to the container 
+		$default['link_class'] 	= 'myclass' // Pass class to the link 
+		$default['img_link'] 	= 'no' 		// Enable or disable image link 
+		
+		return $default; 
+	}
+} ?&gt;
+</code>
 
 = Can I have more than one carousels in my website? =
 
@@ -122,6 +171,13 @@ Slidr's main goal is to be lightweight and flexible, with the minimum possible r
 
 == Changelog ==
 
+= 1.2 =
+* NEW: Now you can use Slidr instead of the default WordPress gallery. Just enable "Slidr for Gallery" and start creating galleries as usual, the WordPress way!
+* More natural, seamless auto scroll.
+* Smarter handling of titles and captions when in gallery mode (if title is empty or is the same as the filename, caption is used in its place).
+* More customization options for developers who want to override plugin's functionality directly from their themes.
+* Performance improvements and small bug fixes.
+
 = 1.1.2 =
 * FIX: When gallery mode is set to "yes" (which gets all of the post's attached media) omit featured image.
 
@@ -141,6 +197,9 @@ Slidr's main goal is to be lightweight and flexible, with the minimum possible r
 * First release.
 
 == Upgrade Notice ==
+
+= 1.2 =
+Now you can use Slidr instead of the default WordPress gallery. No need to mess with shortcodes. Just enable "Slidr for Gallery" and start creating galleries as usual, the WordPress way!
 
 = 1.1 =
 Added autoscroll support, loading animation and some minor fixes.
